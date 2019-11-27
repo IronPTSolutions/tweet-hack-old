@@ -96,7 +96,7 @@ module.exports.create = (req, res, next) => {
   const tweet = new Tweet({
     user: req.currentUser._id,
     body: req.body.body,
-    image: req.body.image
+    image: req.file ? req.file.url : undefined
   })
   
   tweet.save()

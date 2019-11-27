@@ -13,7 +13,7 @@ module.exports.create = (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
-    avatar: req.body.avatar,
+    avatar: req.file ? req.file.url : undefined,
     bootcamp: req.body.bootcamp
   })
 
@@ -74,7 +74,7 @@ module.exports.doSocialLogin = (req, res, next) => {
 }
 
 module.exports.doLogin = (req, res, next) => {
-  const { email, password } = req.body
+  const { email, password } = req.body
 
   if (!email || !password) {
     return res.render('users/login', { user: req.body })
