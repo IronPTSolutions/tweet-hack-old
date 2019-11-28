@@ -47,7 +47,11 @@ const userSchema = new mongoose.Schema({
   validated: {
     type: Boolean,
     default: true
-  }
+  },
+  social: {
+    google: String,
+    facebook: String
+  },
 }, { timestamps: true })
 
 userSchema.pre('save', function (next) {

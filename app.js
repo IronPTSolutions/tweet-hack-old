@@ -5,14 +5,12 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-
 const alertMiddleware = require('./middlewares/alert.middleware')
-/**
- * Handlebars and Mongoose config
- */
+
 require('./config/hbs.config');
 require('./config/db.config');
 require('./config/mailer.config');
+const passportConfig = require('./config/passport.config')
 const session = require('./config/session.config');
 
 /**
@@ -24,8 +22,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(session);
+app.use(passportConfig);
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.user
