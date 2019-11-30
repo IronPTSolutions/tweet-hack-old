@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const mongoose = require('mongoose');
 const mailer = require('../config/mailer.config');
+const passport = require('passport');
 
 module.exports.new = (_, res) => {
   res.render('users/new', { user: new User() })
@@ -57,6 +58,19 @@ module.exports.validate = (req, res, next) => {
 
 module.exports.login = (_, res) => {
   res.render('users/login')
+}
+
+module.exports.doSocialLogin = (req, res, next) => {
+  const socialProvider = req.params.provider
+  
+  passport.authenticate(`${socialProvider}-auth`, (error, user) => {
+    if (error) {
+      next(error);
+    } else {
+      req.session.user = user;
+      res.redirect('/')
+    }
+  })(req, res, next);
 }
 
 module.exports.doLogin = (req, res, next) => {
