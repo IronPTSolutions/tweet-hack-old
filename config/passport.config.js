@@ -3,7 +3,7 @@ const User = require('../models/user.model');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const SlackStrategy = require('passport-slack').Strategy;
 const FBStrategy = require('passport-facebook').Strategy;
-/*
+
 passport.use('google-auth', new GoogleStrategy({
   clientID: process.env.GOOGLE_AUTH_CLIENT_ID,
   clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
@@ -16,7 +16,7 @@ passport.use('facebook-auth', new FBStrategy({
   callbackURL: process.env.FB_AUTH_CB || '/callback/facebook',
   profileFields: ['displayName', 'emails']
 }, authenticateOAuthUser));
-*/
+
 passport.use('slack-auth', new SlackStrategy(
   {
     clientID: process.env.SLACK_CLIENT_ID,
