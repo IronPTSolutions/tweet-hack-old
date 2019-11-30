@@ -50,7 +50,8 @@ const userSchema = new mongoose.Schema({
   },
   social: {
     google: String,
-    facebook: String
+    facebook: String,
+    slack: String
   },
 }, { timestamps: true })
 
