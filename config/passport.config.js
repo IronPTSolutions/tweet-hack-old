@@ -25,6 +25,7 @@ passport.use('slack-auth', new SlackStrategy(
   }, authenticateOAuthUser));
 
 function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
+  console.log("perrete");
   User.findOne({ [`social.${profile.provider.toLowerCase()}`]: profile.id })
     .then(user => {
       if (user) {
